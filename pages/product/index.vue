@@ -1,11 +1,13 @@
 <template>
     <div>
 <h2>Product</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-     Dolorem facere accusantium velit eaque fugit ut,
-      atque cum mollitia molestiae voluptates? 
-      Eum consectetur obcaecati quia officiis, 
-    laudantium molestias accusantium. Quam, ea.</p>
+<div>
+   <div class="grid grid-cols-4 gap-5">
+    <div v-for=" i in products">
+    <NuxtLink :to="`/products/${i.id}`">{{ i.video_status }} </NuxtLink>
+    </div>
+   </div>
+</div>
     </div>
 </template>
 
@@ -13,7 +15,8 @@
 definePageMeta({ 
     layout:'products'
 })
-
+//Fetch products
+    const {data: products} = await useFetch('http://127.0.0.1:8000/api/auth/getFeaturedVideo/featured')
 </script>
 
 
