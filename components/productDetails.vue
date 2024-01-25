@@ -7,9 +7,10 @@
             <div class="p-7">
             <h2 class="text-4xl my-7"> {{ product.title }}</h2> 
             <h2 class="text-xl my-7">Price - ${{ product.price }}</h2> 
-            <h3 class="front-bold border-b-2 mb-4 pb-2">Product discription: </h3>   
-            </div>
+            <h3 class="front-bold border-b-2 mb-4 pb-2">Product description: </h3>   
+            <p class="mb-7">{{ product.description }}</p>
         </div>
+    </div>
     </div>
 </template>
 
@@ -18,5 +19,7 @@ const { product } = defineProps(['product'])
 </script>
 
 <style scoped>
-
+img {
+    max-width: 200px;
+}
 </style>
