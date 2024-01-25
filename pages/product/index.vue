@@ -4,19 +4,19 @@
 <div>
    <div class="grid grid-cols-4 gap-5">
     <div v-for=" i in products">
-    <NuxtLink :to="`/products/${i.id}`">{{ i.video_status }} </NuxtLink>
+    <NuxtLink :to="`/product/${i.id}`">{{ i.title }} </NuxtLink>
     </div>
    </div>
 </div>
     </div>
 </template>
 
-<script setup>
+<script setup> 
 definePageMeta({ 
-    layout:'products'
+    layout:'product'
 })
 //Fetch products
-    const {data: products} = await useFetch('http://127.0.0.1:8000/api/auth/getFeaturedVideo/featured')
+    const {data: products} = await useFetch('https://fakestoreapi.com/products')
 </script>
 
 
