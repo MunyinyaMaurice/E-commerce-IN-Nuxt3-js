@@ -1,13 +1,6 @@
 <template>
     <div class="font-bold text-gray-500 m-4 truncate">
-<img :src="product.image" alert="product thumb" class="thumb">
-<p>{{ product.title }}</p>
-<p>{{ product.price }}</p>
-<p>{{ product.id }}</p>
-<br>
-<p><p>
-    
-</p></p>
+<productDetails :product="product" />
     </div>
 </template>
 
@@ -24,4 +17,4 @@ definePageMeta({
 
 <style lang="scss" scoped>
 
-</style>
+</style> 
