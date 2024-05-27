@@ -2,11 +2,12 @@
     <div>
         <header class="shadow-sm bg-white">
             <nav class="container mx-auto p-4 flex justify-between">
-                <NuxtLink to="/" class="font-bold">Nuxt Dojo</NuxtLink>
+                <NuxtLink to="/" class="font-bold">Volunteering</NuxtLink>
                 <ul class="flex gap-4">
                     <li> <NuxtLink to="/">Home </NuxtLink></li>
                     <li> <NuxtLink to="/about">About</NuxtLink></li>
-                    <li> <NuxtLink to="/product" class="btn">Product</NuxtLink></li>
+                    <!-- <li> <NuxtLink to="/product" class="btn">Volunteer</NuxtLink></li> -->
+                    <li> <NuxtLink to="/signin" class="btn">Signin</NuxtLink></li>
                     
                 </ul>
             </nav>

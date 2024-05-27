@@ -1,7 +1,13 @@
 <template>
     <div class="font-bold text-gray-500 m-4 truncate">
+        <Head>
+            <Title>
+                NUXT DOJO | {{ product.title }}
+            </Title>
+            <Meta name="description" :content="product.description"></Meta>
+        </Head>
 <productDetails :product="product" />
-    </div>
+    </div> 
 </template>
 
 <script setup>
