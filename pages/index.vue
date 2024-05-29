@@ -24,23 +24,8 @@
         </div>
 </template>
 
-  <script setup>
-// import { onMounted } from 'vue';
-// // import App from './App.vue';
-// import { createRouter, createWebHistory } from 'vue-router';
-// import Hospital from '../components/admin/dashboard/Hospital.vue';
-
-// const routes = [
-//   { path: '/admin/dashboard/hospital', component: Hospital },
-//   // Add more routes as needed
-// ];
-
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes,
-// });
-
-// createApp(App).use(router).mount('#app');
+<script setup lang="ts">
+const appConfig = useAppConfig()
 </script>
 
 

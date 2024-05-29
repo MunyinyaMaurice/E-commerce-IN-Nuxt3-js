@@ -7,7 +7,8 @@
                     <li> <NuxtLink to="/">Home </NuxtLink></li>
                     <li> <NuxtLink to="/about">About</NuxtLink></li>
                     <!-- <li> <NuxtLink to="/product" class="btn">Volunteer</NuxtLink></li> -->
-                    <li> <NuxtLink to="/signin" class="btn">Signin</NuxtLink></li>
+                    <li> <NuxtLink to="/login" class="btn">Signin</NuxtLink></li>
+                    <li> <NuxtLink to="/register" class="btn">Signup</NuxtLink></li>
                     
                 </ul>
             </nav>
