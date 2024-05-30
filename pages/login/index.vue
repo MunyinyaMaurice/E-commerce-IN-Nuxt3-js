@@ -88,7 +88,7 @@ const submitLogin = async () => {
       useCookie('refreshToken').value = refreshToken;
       useCookie('accessToken').value = accessToken;
       console.log("accessToken  :",accessToken)
-      navigateTo('/dashboard/hospital');
+      navigateTo('/dashboard');
 
     } else {
       error.value = 'No data received from the server';

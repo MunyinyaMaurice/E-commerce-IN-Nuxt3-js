@@ -1,7 +1,10 @@
-<template>
+<!-- <template>
   <div class="container mx-auto p-4">
     <div v-if="refreshData" class="text-center">
-      <button @click="refreshData" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button
+        @click="refreshData"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
         REFRESH
       </button>
     </div>
@@ -17,15 +20,58 @@
             <th class="py-2 px-4 border">Location</th>
             <th class="py-2 px-4 border">Email</th>
             <th class="py-2 px-4 border">Phone</th>
+            <th class="py-2 px-4 border">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="hospital in hospitals" :key="hospital.id" class="border-b hover:bg-gray-100">
+          <tr
+            v-for="hospital in hospitals"
+            :key="hospital.id"
+            class="border-b hover:bg-gray-100"
+          >
             <td class="py-2 px-4 border">{{ hospital.id }}</td>
             <td class="py-2 px-4 border">{{ hospital.name }}</td>
             <td class="py-2 px-4 border">{{ hospital.location }}</td>
             <td class="py-2 px-4 border">{{ hospital.email }}</td>
             <td class="py-2 px-4 border">{{ hospital.telPhone }}</td>
+
+            <td class="py-2 px-4 border">
+              <div class="relative inline-block">
+                <button
+                  @click="toggleDropdown(hospital.id)"
+                  class="inline-flex items-center px-3 py-2 border rounded text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                >
+                  <svg
+                    class="h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  v-show="dropdownVisible(hospital.id)"
+                  class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                >
+                  <button
+                    @click="openUpdateForm(hospital.id)"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Update
+                  </button>
+                  <button
+                    @click="deleteHospital(hospital.id)"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -34,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 import { useIFetch } from "~/composables/useIFetch";
 
 interface Hospital {
@@ -47,15 +93,20 @@ interface Hospital {
 
 const hospitals = ref<Hospital[]>([]);
 const loading = ref(false);
-const error = ref('');
+const error = ref("");
 const refreshData = ref<() => void | null>(null);
+const openDropdownId = ref<number | null>(null);
 
 const fetchHospitals = async () => {
   loading.value = true;
-  error.value = '';
+  error.value = "";
 
   try {
-    const { data, error: fetchError, refresh } = await useIFetch<Hospital[]>('hospitals', { lazy: false });
+    const {
+      data,
+      error: fetchError,
+      refresh,
+    } = await useIFetch<Hospital[]>("hospitals", { lazy: false });
 
     if (fetchError.value) {
       error.value = fetchError.value.message;
@@ -71,6 +122,37 @@ const fetchHospitals = async () => {
     loading.value = false;
   }
 };
+const toggleDropdown = (hospitalId: number) => {
+  openDropdownId.value = openDropdownId.value === hospitalId ? null : hospitalId;
+};
+
+const dropdownVisible = (hospitalId: number) => {
+  return openDropdownId.value === hospitalId;
+};
+
+const openUpdateForm = (hospitalId: number) => {
+  // Open the update form for the hospital with the given ID
+  // You can navigate to the update form component or display a modal here
+  console.log(`Opening update form for hospital with ID ${hospitalId}`);
+};
+
+const deleteHospital = (hospitalId: number) => {
+  // Implement the delete hospital logic here
+  console.log(`Deleting hospital with ID ${hospitalId}`);
+};
 
 onMounted(fetchHospitals);
+</script> -->
+<template>
+  <div>
+<AdminDashboardHospitalHospitals />
+  </div>
+</template>
+
+<script setup>
+
 </script>
+
+<style lang="scss" scoped>
+
+</style>

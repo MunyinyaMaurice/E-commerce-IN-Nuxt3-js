@@ -1,10 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path';
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss',
-    // '../plugins/useIFetch'
-  ],
-    component: 'Slider',
+  modules: ['@nuxtjs/tailwindcss'],
+    // component: 'Slider',
+    components: {
+      dirs: [
+        '~/components',
+        '~/components/admin/dashboard/hospital',
+        // Add more paths if you have components in other subdirectories
+      ],
+    },
 
   app: {
     head: {
