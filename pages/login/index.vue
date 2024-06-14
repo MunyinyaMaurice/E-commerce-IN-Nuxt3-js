@@ -88,7 +88,8 @@ const submitLogin = async () => {
       useCookie('refreshToken').value = refreshToken;
       useCookie('accessToken').value = accessToken;
       console.log("accessToken  :",accessToken)
-      navigateTo('/dashboard');
+      // navigateTo('/dashboard');
+      navigateTo('/dashboard/department/createDepartment');
 
     } else {
       error.value = 'No data received from the server';

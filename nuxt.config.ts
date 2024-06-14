@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       dirs: [
         '~/components',
         '~/components/admin/dashboard/hospital',
+        '~/components/admin/dashboard/department',
         // Add more paths if you have components in other subdirectories
       ],
     },
