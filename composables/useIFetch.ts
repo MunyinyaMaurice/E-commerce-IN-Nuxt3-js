@@ -34,8 +34,9 @@ export async function useIFetch<T>(
       ) {
   const accessToken = useCookie('accessToken');
   const router = useRouter();
+  const config = useRuntimeConfig();
   const defaults: UseFetchOptions<T> = {
-    baseURL: 'http://localhost:23999/api/',
+    baseURL: config.public.apiBase,
     key: url,
     headers: accessToken.value
       ? { Authorization: `Bearer ${accessToken.value}` }

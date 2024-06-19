@@ -19,8 +19,12 @@
     laudantium molestias accusantium. Quam, ea.</p>
     </div>
     <div>
-        <!-- <card /> -->
-        <AdminDashboardHospital />
+        <!-- <openPositionsCard /> -->
+        <PageAutoSlider />
+
+        <PageCard />
+        
+        <!-- <AdminDashboardHospital /> -->
         </div>
 </template>
 

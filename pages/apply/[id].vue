@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container mx-auto p-6">
       <h1 class="text-2xl font-bold mb-4">User Information</h1>
       <div class="mb-4">
@@ -84,4 +84,18 @@ if (!data.value) {
     const foundUser = data.find((user) => user.nationalId === parseInt(newValue));
     userInfo.value = foundUser || null;
   });
+  </script> -->
+
+  <template>
+    <div>
+  
+    </div>
+  </template>
+  
+  <script setup>
+  
   </script>
+  
+  <style lang="scss" scoped>
+  
+  </style>

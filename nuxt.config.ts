@@ -2,14 +2,21 @@
 import path from 'path';
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  
   modules: ['@nuxtjs/tailwindcss'],
+  
+  
     // component: 'Slider',
+    // css: ['~/assets/css/main.css'],
+  // images: ['~/assets/images'],
     components: {
       dirs: [
         '~/components',
         '~/components/admin/dashboard/hospital',
         '~/components/admin/dashboard/department',
-        // Add more paths if you have components in other subdirectories
+        '~/components/page/**',
+        
+        
       ],
     },
 
@@ -37,6 +44,8 @@ export default defineNuxtConfig({
     // Keys within public, will be also exposed to the client-side
     public: {
       apiBase: process.env.API_BASE,
+      // API_BASE_OPEN
+      apiBaseOpen: process.env.API_BASE_OPEN,
       // otherUrl: process.env.OTHER_URL
     },
     // publicRuntimeConfig: {
