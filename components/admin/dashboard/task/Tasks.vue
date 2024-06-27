@@ -1,4 +1,19 @@
 <template>
+  <div>
+task
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style lang="scss" scoped>
+
+</style>
+
+
+<!-- <template>
     <div class="container mx-auto p-4">
 
         <div class="flex justify-between mb-4">
@@ -12,8 +27,7 @@
       </button>
     </div>
     <div>
-        <!-- <NuxtLink to="/dashboard/hospital/createHospital"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded h-10 md:h-10 lg:h-10"
-      >Create New Hospital</NuxtLink> -->
+       
       <button
         @click="navigateToCreateTask"
         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded h-10 md:h-10 lg:h-10"
@@ -108,16 +122,16 @@
   import { ref, onMounted } from "vue";
   import { useIFetch } from "~/composables/useIFetch";
   import { navigateTo } from '#app';
-  //   import { useFetch } from '#app';
-// onMounted(() => {
-//   // Check if user is authenticated
-//   const accessToken = localStorage.getItem('accessToken');
+    // import { useFetch } from '#app';
+onMounted(() => {
+  // Check if user is authenticated
+  const accessToken = localStorage.getItem('accessToken');
 
-//   if (!accessToken) {
-//     // Redirect to login page if accessToken is missing
-//     navigateTo('/login');
-//   }
-// });
+  if (!accessToken) {
+    // Redirect to login page if accessToken is missing
+    navigateTo('/login');
+  }
+});
   
   interface Task {
     id: string;
@@ -203,4 +217,6 @@ navigateTo(`assignedTask/assignTask/${taskId}`);
   
   onMounted(fetchTasks);
   </script>
-  
+   -->
+
+   

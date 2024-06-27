@@ -64,35 +64,8 @@
 
 /**
  * WORKING WELL
- * Store token in LOCALSTORAGE and use statemanagemnt
-//  */
-// import type { UseFetchOptions } from "#app";
-// import { defu } from "defu";
-// import { useFetch } from "#app";
-// import { useRouter } from "vue-router";
-
-// export async function useIFetch<T>(
-//   url: string,
-//   options: UseFetchOptions<T> = {}
-// ) {
-//   const router = useRouter();
-//   const config = useRuntimeConfig();
-//   const accessToken = localStorage.getItem("accessToken");
-//   const defaults: UseFetchOptions<T> = {
-//     baseURL: config.public.apiBase,
-//     key: url,
-//     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
-//     onResponse: async ({ response, options }) => {
-//       if (response.status === 401) {
-//         router.push({ path: "/login" });
-//       }
-//     },
-//   };
-
-//   const params = defu(options, defaults);
-
-//   return useFetch(url, params);
-// }
+ * Store token in LOCALSTORAGE
+ */
 
 // import type { UseFetchOptions } from "#app";
 // import { defu } from "defu";
@@ -106,7 +79,7 @@
 //   const router = useRouter();
 //   const config = useRuntimeConfig();
 
-//   // Check if localStorage is available and get the accessToken
+//   // Ensure localStorage is available and fetch the accessToken
 //   let accessToken = null;
 //   if (typeof localStorage !== "undefined") {
 //     accessToken = localStorage.getItem("accessToken");
@@ -125,12 +98,26 @@
 
 //   const params = defu(options, defaults);
 
-//   return useFetch(url, params);
+//   try {
+//     const result = await useFetch(url, params);
+//     console.log("Fetch result:", result);
+//     return result;
+//   } catch (error) {
+//     console.error("Fetch error:", error);
+//     throw error;
+//   }
 // }
+
+/**
+ * WORKING WELL
+ * Store token in LOCALSTORAGE and use statemanagemnt
+ */
+
 import type { UseFetchOptions } from "#app";
 import { defu } from "defu";
 import { useFetch } from "#app";
 import { useRouter } from "vue-router";
+import { getToken } from "~/composables/authService";
 
 export async function useIFetch<T>(
   url: string,
@@ -138,12 +125,7 @@ export async function useIFetch<T>(
 ) {
   const router = useRouter();
   const config = useRuntimeConfig();
-
-  // Ensure localStorage is available and fetch the accessToken
-  let accessToken = null;
-  if (typeof localStorage !== "undefined") {
-    accessToken = localStorage.getItem("accessToken");
-  }
+  const accessToken = getToken();
 
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.apiBase,
@@ -158,6 +140,7 @@ export async function useIFetch<T>(
 
   const params = defu(options, defaults);
 
+  // return useFetch(url, params);
   try {
     const result = await useFetch(url, params);
     console.log("Fetch result:", result);

@@ -5,52 +5,16 @@
     <!-- <AdminDashboardHospitalHospitals v-if="isAuthenticated" /> -->
   </div>
 </template>
-
-<!-- <script setup>
-import { useTheme } from "~/composables/state";
-import { useRouter } from "vue-router";
-import { computed, onMounted } from "vue";
-
-const { accessToken, clearTokens } = useTheme();
-const router = useRouter();
-
-const isAuthenticated = computed(() => !!accessToken.value);
-
-onMounted(() => {
-  if (!isAuthenticated.value) {
-    router.push("/login");
-  }
-});
-</script> -->
-
-
-
-
-<!-- <template>
-  <div>
-    <AdminDashboardHospitalHospitals v-if="isAuthenticated" />
-  </div>
-</template>
-
 <script setup>
-import { useTheme } from "~/composables/state";
-import { useRouter } from "vue-router";
-import { onMounted } from "vue";
-
-const { accessToken, clearTokens } = useTheme();
-const router = useRouter();
-
-const isAuthenticated = computed(() => !!accessToken.value);
-
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 onMounted(() => {
-  if (!isAuthenticated.value) {
-    router.push("/login");
+  // Check if user is authenticated
+  const accessToken = localStorage.getItem('accessToken');
+
+  if (!accessToken) {
+    // Redirect to login page if accessToken is missing
+    navigateTo('/login');
   }
 });
-
-// Example of how to clear tokens, e.g., on logout
-// const logout = () => {
-//   clearTokens();
-//   router.push("/login");
-// }
-</script> -->
+</script>

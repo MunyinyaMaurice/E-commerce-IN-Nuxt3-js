@@ -47,6 +47,18 @@
             <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3" /></svg>
           <span>Department</span>
         </a>
+<!-- <a href="/dashboard/applicant" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+          
+          <span>Task</span>
+        </a> -->
+
+        <NuxtLink to="/dashboard/task"  class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+          <svg class="h-6 w-6 mr-2"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+            <path stroke="none" d="M0 0h24v24H0z"/>  
+            <path d="M3 21v-13l9-4l9 4v13" />  
+            <path d="M13 13h4v8h-10v-6h6" />  
+            <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3" /></svg>
+          Task</NuxtLink>
 
         <a href="/dashboard/applicant" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
           <svg class="h-6 w-6 mr-2"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  
@@ -76,18 +88,17 @@
 </template>
 
 <script setup>
-// import { ref, onMounted } from "vue";
-// // import { useIFetch } from "~/composables/useIFetch";
-// import { navigateTo } from '#app';
-// onMounted(() => {
-//   // Check if user is authenticated
-//   const accessToken = localStorage.getItem('accessToken');
+import { ref, onMounted } from 'vue';
+import { navigateTo } from '#app';
+onMounted(() => {
+  // Check if user is authenticated
+  const accessToken = localStorage.getItem('accessToken');
 
-//   if (!accessToken) {
-//     // Redirect to login page if accessToken is missing
-//     navigateTo('/login');
-//   }
-// });
+  if (!accessToken) {
+    // Redirect to login page if accessToken is missing
+    navigateTo('/login');
+  }
+});
 </script>
 
 <style lang="scss" scoped>

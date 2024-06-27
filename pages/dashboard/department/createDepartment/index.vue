@@ -77,15 +77,15 @@
   import { ref, onMounted } from "vue";
     import { useIFetch } from "~/composables/useIFetch";
   import { navigateTo } from '#app';
-//     onMounted(() => {
-//   // Check if user is authenticated
-//   const accessToken = localStorage.getItem('accessToken');
+    onMounted(() => {
+  // Check if user is authenticated
+  const accessToken = localStorage.getItem('accessToken');
 
-//   if (!accessToken) {
-//     // Redirect to login page if accessToken is missing
-//     navigateTo('/login');
-//   }
-// });
+  if (!accessToken) {
+    // Redirect to login page if accessToken is missing
+    navigateTo('/login');
+  }
+});
   
     interface Hospital {
       id: number;
