@@ -1,5 +1,7 @@
   <template>
-    <div class="container mx-auto p-4">
+    <div class="flex justify-center items-center min-h-screen p-6 bg-gray-100">
+    <div class="card max-w-4xl w-full">
+    <!-- <div class="container mx-auto p-4"> -->
       <h1 class="text-2xl font-bold mb-4">Create Department</h1>
   
       <div v-if="loading" class="text-center">Loading...</div>
@@ -67,13 +69,23 @@
         </form>
       </div>
     </div>
+  </div>
   </template>
   
   <script setup lang="ts">
   
   import { ref, onMounted } from "vue";
     import { useIFetch } from "~/composables/useIFetch";
-    import { navigateTo } from '#app';
+  import { navigateTo } from '#app';
+//     onMounted(() => {
+//   // Check if user is authenticated
+//   const accessToken = localStorage.getItem('accessToken');
+
+//   if (!accessToken) {
+//     // Redirect to login page if accessToken is missing
+//     navigateTo('/login');
+//   }
+// });
   
     interface Hospital {
       id: number;

@@ -1,18 +1,4 @@
 <!-- <template>
-  <div>
-<PageApply />
-  </div>
-</template>
-
-<script setup>
-
-</script>
-
-<style lang="scss" scoped>
-
-</style> -->
-
-<!-- <template>
   <div class="flex justify-center items-center min-h-screen p-6 bg-gray-100">
     <div class="card max-w-4xl w-full">
       <div class="card-header text-center bg-blue-800 rounded-lg text-white py-4">
@@ -225,6 +211,11 @@ const saveApplication = async () => {
         <form @submit.prevent="saveApplication">
           <!-- <div>
             <label for="nationalId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National ID:</label>
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
             <input 
               v-model="enteredNationalId"
               type="text" 
@@ -237,24 +228,21 @@ const saveApplication = async () => {
           </div> -->
           <div class="relative">
     <label for="nationalId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National ID:</label>
-    <div class="relative">
-        <input 
-            v-model="enteredNationalId"
-            type="text" 
-            id="nationalId" 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-            placeholder="Enter your national ID"
-            required
-            @input="fetchUserInfo"
-        />
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-        </div>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
     </div>
+    <input 
+      v-model="enteredNationalId"
+      type="text" 
+      id="nationalId" 
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+      placeholder="Enter your national ID"
+      required
+      @input="fetchUserInfo"
+    />
 </div>
-
 
           <div v-if="userInfo" class="grid grid-cols-2 gap-4 mt-4">
             <div>
@@ -277,7 +265,7 @@ const saveApplication = async () => {
                 readonly
               />
             </div>
-            <!-- <div>
+            <div>
               <label class="block mb-2 font-bold" for="degreeId">Degree ID:</label>
               <input
                 v-model="formData.degreeId"
@@ -286,9 +274,9 @@ const saveApplication = async () => {
                 id="degreeId"
                 readonly
               />
-            </div> -->
+            </div>
             <div>
-              <label class="block mb-2 font-bold" for="majorFocus"> Focus:</label>
+              <label class="block mb-2 font-bold" for="majorFocus">Major Focus:</label>
               <input
                 v-model="formData.majorFocus"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"    
@@ -318,7 +306,7 @@ const saveApplication = async () => {
           <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
           <div class="mt-4">
             <button type="submit" class="block w-full bg-blue-800 text-white py-3 px-4 rounded-lg" :disabled="isLoading">
-              {{ isLoading ? 'Saving...' : 'Apply now' }}
+              {{ isLoading ? 'Saving...' : 'Save' }}
             </button>
           </div>
         </form>
@@ -337,7 +325,7 @@ interface FormData {
   email: string;
   telPhone: string;
   nationalId: string;
-  // degreeId: string;
+  degreeId: string;
   majorFocus: string;
   positionId?: number;
 }
@@ -348,7 +336,7 @@ const formData = ref<FormData>({
   email: '',
   telPhone: '',
   nationalId: '',
-  // degreeId: '',
+  degreeId: '',
   majorFocus: '',
 });
 
@@ -379,7 +367,7 @@ const fetchUserInfo = async () => {
         ...formData.value,
         firstName: data.firstName,
         lastName: data.lastName,
-        // degreeId: data.degreeId,
+        degreeId: data.degreeId,
         majorFocus: data.majorFocus,
         nationalId: enteredNationalId.value,
       };
@@ -426,7 +414,7 @@ const saveApplication = async () => {
         email: '',
         telPhone: '',
         nationalId: '',
-        // degreeId: '',
+        degreeId: '',
         majorFocus: '',
         positionId: undefined,
       };
@@ -440,3 +428,188 @@ const saveApplication = async () => {
 </script>
 
 
+
+
+<!-- 
+   <template>
+    <div class="flex justify-center items-center min-h-screen p-6 bg-gray-100">
+      <div class="card max-w-4xl w-full">
+        <div class="card-header text-center bg-blue-800 rounded-lg text-white py-4">
+          JOIN VOLUNTEERING PROGRAM
+        </div>
+        <div class="card-body p-6 bg-white shadow-md">
+          <form @submit.prevent="saveApplication">
+            <div>
+              <label for="nationalId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National ID:</label>
+              <input 
+                v-model="enteredNationalId"
+                type="text" 
+                id="nationalId" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                
+                placeholder="Enter your national ID"
+                required
+                @input="fetchUserInfo"
+              />
+            </div>
+            <div v-if="userInfo" class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block mb-2 font-bold" for="firstName">First Name:</label>
+                <input
+                  v-model="formData.firstName"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"    
+                  type="text"
+                  id="firstName"
+                  readonly
+                />
+              </div>
+              <div>
+                <label class="block mb-2 font-bold" for="lastName">Last Name:</label>
+                <input
+                  v-model="formData.lastName"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"     
+                  type="text"
+                  id="lastName"
+                  readonly
+                />
+              </div>
+              <div>
+                <label class="block mb-2 font-bold" for="degreeId">Degree ID:</label>
+                <input
+                  v-model="formData.degreeId"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  type="text"
+                  id="degreeId"
+                  readonly
+                />
+              </div>
+              <div>
+                <label class="block mb-2 font-bold" for="majorFocus">Major Focus:</label>
+                <input
+                  v-model="formData.majorFocus"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"    
+                  type="text"
+                  id="majorFocus"
+                  readonly
+                />
+              </div>
+              <div>
+                <label class="block mb-2 font-bold" for="email">Email:</label>
+                <input
+                  v-model="formData.email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"                   
+                  type="text"
+                  id="email"
+                />
+              </div>
+              <div>
+                <label class="block mb-2 font-bold" for="telPhone">Phone Number:</label>
+                <input
+                  v-model="formData.telPhone"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"                   type="text"
+                  id="telPhone"
+                />
+              </div>
+            </div>
+            <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
+            <div class="mt-4">
+              <button type="submit" class="block w-full bg-blue-800 text-white py-3 px-4 rounded-lg" :disabled="isLoading">
+                {{ isLoading ? 'Saving...' : 'Save' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script setup lang="ts">
+  import { ref } from 'vue';
+  import { useFetch } from '#app';
+  
+  interface FormData {
+    firstName: string;
+    lastName: string;
+    email: string;
+    telPhone: string;
+    nationalId: string;
+    degreeId: string;
+    majorFocus: string;
+  }
+  
+  const formData = ref<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    telPhone: '',
+    nationalId: '',
+    degreeId: '',
+    majorFocus: '',
+  });
+  
+  const error = ref('');
+  const isLoading = ref(false);
+  
+  const enteredNationalId = ref('');
+  const userInfo = ref(null);
+  
+  const fetchUserInfo = async () => {
+    if (enteredNationalId.value) {
+      try {
+        const { data, error } = await useFetch(`http://localhost:23991/api/qualifications/${enteredNationalId.value}`);
+        if (error.value) {
+          throw new Error(error.value);
+        }
+        const user = data.value;
+        userInfo.value = user;
+        formData.value = {
+          ...formData.value,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          degreeId: user.degreeId,
+          majorFocus: user.majorFocus,
+          nationalId: enteredNationalId.value,
+        };
+      } catch (err) {
+        console.error(err);
+        userInfo.value = null;
+      }
+    } else {
+      userInfo.value = null;
+    }
+  };
+  
+  const saveApplication = async () => {
+    isLoading.value = true;
+    error.value = '';
+  
+    try {
+      const { error: fetchError } = await useFetch('http://localhost:23999/api/applicants', {
+        method: 'POST',
+        body: formData.value,
+      });
+  
+      if (fetchError.value) {
+        throw new Error(fetchError.value.message);
+      } else {
+        // Application saved successfully, perform any additional actions
+        console.log('Application saved successfully');
+        // Reset the form data
+        formData.value = {
+          firstName: '',
+          lastName: '',
+          email: '',
+          telPhone: '',
+          nationalId: '',
+          degreeId: '',
+          majorFocus: '',
+        };
+      }
+    } catch (err) {
+      error.value = (err as Error).message;
+    } finally {
+      isLoading.value = false;
+    }
+  };
+  </script>
+   -->

@@ -6,15 +6,15 @@ export default {
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
-    "./node_modules/flowbite/**/*.{js,ts}"
+    "./node_modules/flowbite/**/*.{js,ts}",
   ],
   theme: {
     backgroundSize: {
-      'auto': 'auto',
-      'cover': 'cover',
-      'contain': 'contain',
-       '50%': '50%',
-      '16': '4rem',
+      auto: "auto",
+      cover: "cover",
+      contain: "contain",
+      "50%": "50%",
+      16: "4rem",
     },
     screens: {
       sm: "480px",
@@ -23,7 +23,8 @@ export default {
       xl: "1440px",
     },
     colors: {
-      gray: "#52525b",
+      // gray: "#52525b",
+      white: "auto",
     },
     fontFamily: {
       sans: ['"Source Sans 3"', "sans-serif"],
@@ -50,4 +51,3 @@ export default {
     }),
   ],
 };
-

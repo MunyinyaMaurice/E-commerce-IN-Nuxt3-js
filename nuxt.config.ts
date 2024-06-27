@@ -1,36 +1,33 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import path from 'path';
+import path from "path";
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  
-  modules: ['@nuxtjs/tailwindcss'],
-  
-  
-    // component: 'Slider',
-    // css: ['~/assets/css/main.css'],
+
+  modules: ["@nuxtjs/tailwindcss"],
+
+  // component: 'Slider',
+  // css: ['~/assets/css/main.css'],
   // images: ['~/assets/images'],
-    components: {
-      dirs: [
-        '~/components',
-        '~/components/admin/dashboard/hospital',
-        '~/components/admin/dashboard/department',
-        '~/components/page/**',
-        
-        
-      ],
-    },
+  components: {
+    dirs: [
+      "~/components",
+      "~/components/admin/dashboard/hospital",
+      "~/components/admin/dashboard/department",
+      "~/components/page/**",
+    ],
+  },
 
   app: {
     head: {
-      title: 'Nuxt Dojo',
-      meta: [
-        { name: 'description', content: 'everything about Nuxt 3' 
-      }
-    ],
-    link: [
-      {rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons'}
-    ]
-    }
+      title: "NHVMS",
+      meta: [{ name: "description", content: "Hospital volunteering" }],
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+        },
+      ],
+    },
   },
   router: {
     options: {
@@ -52,4 +49,4 @@ export default defineNuxtConfig({
     //   apiBase: process.env.API_BASE || 'http://localhost:23999/api/'
     // },
   },
-})
+});

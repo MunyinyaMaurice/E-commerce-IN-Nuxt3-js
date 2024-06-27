@@ -239,7 +239,7 @@ const deleteDepartment = async (departmentId: number) => {
       <li v-for="skill in department.departmentRequirements" :key="skill">{{ skill }}</li>
     </ul>
   </div>
-</td>
+</td> 
   
               <td class="py-2 px-4 border">
                 <div class="relative inline-block">
@@ -289,7 +289,16 @@ const deleteDepartment = async (departmentId: number) => {
   import { ref, onMounted } from "vue";
   import { useIFetch } from "~/composables/useIFetch";
   import { navigateTo } from '#app';
-//   import { useFetch } from '#app';
+  //   import { useFetch } from '#app';
+// onMounted(() => {
+//   // Check if user is authenticated
+//   const accessToken = localStorage.getItem('accessToken');
+
+//   if (!accessToken) {
+//     // Redirect to login page if accessToken is missing
+//     navigateTo('/login');
+//   }
+// });
   
   interface Department {
     id: number;

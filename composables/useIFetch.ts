@@ -1,61 +1,169 @@
+// import type { UseFetchOptions } from '#app';
+// import { defu } from 'defu';
+// import { useCookie, useFetch } from '#app';
+// import { useRouter } from "vue-router";
 
-import type { UseFetchOptions } from '#app';
-import { defu } from 'defu';
-import { useCookie, useFetch } from '#app';
+// export async function useIFetch<T>(
+//   url: string,
+//   options: UseFetchOptions<T> = {}
+// ) {
+//   const accessToken = useCookie('accessToken');
+//   const router = useRouter();
+//   const config = useRuntimeConfig();
+//   const defaults: UseFetchOptions<T> = {
+//     baseURL: config.public.apiBase,
+//     key: url,
+//     headers: accessToken.value
+//       ? { Authorization: `Bearer ${accessToken.value}` }
+//       : {},
+//     onResponse: async ({ response, options }) => {
+//       if (response.status === 401) {
+//         router.push("/login");
+//       }
+//     },
+//   };
+
+//   const params = defu(options, defaults);
+
+//   return useFetch(url, params);
+// }
+
+/**
+ * WORKING WELL
+ * Store token in cookies
+ */
+
+// import type { UseFetchOptions } from "#app";
+// import { defu } from "defu";
+// import { useCookie, useFetch } from "#app";
+// import { useRouter } from "vue-router";
+// export async function useIFetch<T>(
+//   url: string,
+//   options: UseFetchOptions<T> = {}
+// ) {
+//   const accessToken = useCookie("accessToken");
+//   const router = useRouter();
+//   const config = useRuntimeConfig();
+//   const defaults: UseFetchOptions<T> = {
+//     baseURL: config.public.apiBase,
+//     key: url,
+//     headers: accessToken.value
+//       ? { Authorization: `Bearer ${accessToken.value}` }
+//       : {},
+//     onResponse: async ({ response, options }) => {
+//       if (response.status === 401) {
+//         router.push({ path: "/login" });
+//       }
+//     },
+//   };
+
+//   const params = defu(options, defaults);
+
+//   return useFetch(url, params);
+// }
+
+/**
+ * WORKING WELL
+ * Store token in LOCALSTORAGE and use statemanagemnt
+//  */
+// import type { UseFetchOptions } from "#app";
+// import { defu } from "defu";
+// import { useFetch } from "#app";
+// import { useRouter } from "vue-router";
+
+// export async function useIFetch<T>(
+//   url: string,
+//   options: UseFetchOptions<T> = {}
+// ) {
+//   const router = useRouter();
+//   const config = useRuntimeConfig();
+//   const accessToken = localStorage.getItem("accessToken");
+//   const defaults: UseFetchOptions<T> = {
+//     baseURL: config.public.apiBase,
+//     key: url,
+//     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+//     onResponse: async ({ response, options }) => {
+//       if (response.status === 401) {
+//         router.push({ path: "/login" });
+//       }
+//     },
+//   };
+
+//   const params = defu(options, defaults);
+
+//   return useFetch(url, params);
+// }
+
+// import type { UseFetchOptions } from "#app";
+// import { defu } from "defu";
+// import { useFetch } from "#app";
+// import { useRouter } from "vue-router";
+
+// export async function useIFetch<T>(
+//   url: string,
+//   options: UseFetchOptions<T> = {}
+// ) {
+//   const router = useRouter();
+//   const config = useRuntimeConfig();
+
+//   // Check if localStorage is available and get the accessToken
+//   let accessToken = null;
+//   if (typeof localStorage !== "undefined") {
+//     accessToken = localStorage.getItem("accessToken");
+//   }
+
+//   const defaults: UseFetchOptions<T> = {
+//     baseURL: config.public.apiBase,
+//     key: url,
+//     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+//     onResponse: async ({ response, options }) => {
+//       if (response.status === 401) {
+//         router.push({ path: "/login" });
+//       }
+//     },
+//   };
+
+//   const params = defu(options, defaults);
+
+//   return useFetch(url, params);
+// }
+import type { UseFetchOptions } from "#app";
+import { defu } from "defu";
+import { useFetch } from "#app";
 import { useRouter } from "vue-router";
 
-// async function refreshToken() {
-//   const refreshToken = useCookie('refreshToken');
-
-//   const { data, error } = await useFetch<{ accessToken: string }>(
-//     'http://localhost:23999/api/auth/refresh',
-//     {
-//       method: 'POST',
-//       body: { refreshToken: refreshToken.value },
-//       headers: { 'Content-Type': 'application/json' },
-//     }
-//   );
-
-//   if (error.value) {
-//     throw new Error('Token refresh failed');
-//   }
-
-//   const newAccessToken = data.value?.accessToken;
-//   if (newAccessToken) {
-//     useCookie('accessToken').value = newAccessToken;
-//     return newAccessToken;
-//   } else {
-//     throw new Error('Failed to retrieve new access token');
-//   }
-// }
 export async function useIFetch<T>(
-        url: string,
-        options: UseFetchOptions<T> = {}
-      ) {
-  const accessToken = useCookie('accessToken');
+  url: string,
+  options: UseFetchOptions<T> = {}
+) {
   const router = useRouter();
   const config = useRuntimeConfig();
+
+  // Ensure localStorage is available and fetch the accessToken
+  let accessToken = null;
+  if (typeof localStorage !== "undefined") {
+    accessToken = localStorage.getItem("accessToken");
+  }
+
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.apiBase,
     key: url,
-    headers: accessToken.value
-      ? { Authorization: `Bearer ${accessToken.value}` }
-      : {},
+    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
     onResponse: async ({ response, options }) => {
       if (response.status === 401) {
-        // try {
-        //   const newToken = await refreshToken();
-        //   options.headers = { Authorization: `Bearer ${newToken}` };
-        //   return useFetch(url, options as UseFetchOptions<T>);
-        // } catch (error) {
-        //   console.error('Token refresh failed:', error);
-        // }
-        router.push("/login");
+        router.push({ path: "/login" });
       }
     },
   };
 
   const params = defu(options, defaults);
 
-  return useFetch(url, params);
+  try {
+    const result = await useFetch(url, params);
+    console.log("Fetch result:", result);
+    return result;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw error;
+  }
 }

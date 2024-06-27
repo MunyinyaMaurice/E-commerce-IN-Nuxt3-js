@@ -1,3 +1,5 @@
+<!-- import type productsVue from '~/layouts/products.vue'; -->
+
 <template>
     <div>
 <h2>About</h2>

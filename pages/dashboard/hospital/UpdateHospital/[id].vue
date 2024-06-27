@@ -84,6 +84,15 @@
 import { ref, onMounted } from 'vue';
 import { useIFetch } from '~/composables/useIFetch';
 import { useRoute } from 'vue-router';
+onMounted(() => {
+  // Check if user is authenticated
+  const accessToken = localStorage.getItem('accessToken');
+
+  if (!accessToken) {
+    // Redirect to login page if accessToken is missing
+    navigateTo('/login');
+  }
+});
 
 interface FormData {
   name: string;
