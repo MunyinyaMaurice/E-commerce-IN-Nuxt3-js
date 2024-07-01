@@ -23,8 +23,8 @@ export default {
       xl: "1440px",
     },
     colors: {
-      // gray: "#52525b",
-      white: "auto",
+      gray: "#52525b",
+      // white: bg - white,
     },
     fontFamily: {
       sans: ['"Source Sans 3"', "sans-serif"],

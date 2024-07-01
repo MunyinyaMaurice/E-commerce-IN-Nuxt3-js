@@ -97,6 +97,11 @@
 
 
 <script setup lang="ts">
+// <script lang="ts">
+// definePageMeta({
+//   layout: "dashboardlayout",
+// });
+
 import { ref, onMounted } from 'vue';
 import { useIFetch } from '~/composables/useIFetch';
 import { useRoute } from 'vue-router';

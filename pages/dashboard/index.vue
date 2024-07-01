@@ -1,9 +1,48 @@
 <template>
+  <div class="dashboard-layout flex">
+    <Sidebar />
+    <div class="content flex-grow p-4">
+      <!-- Content for the dashboard index page goes here -->
+      <NuxtPage />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import Sidebar from '~/components/Sidebar.vue'
+import { ref, onMounted } from 'vue';
+import { navigateTo } from '#app';
+onMounted(() => {
+  // Check if user is authenticated
+  const accessToken = localStorage.getItem('accessToken');
+
+  if (!accessToken) {
+    // Redirect to login page if accessToken is missing
+    navigateTo('/login');
+  }
+});
+
+definePageMeta({
+  layout: "dashboardLayout",
+});
+</script>
+
+<style scoped>
+.dashboard-layout {
+  height: 100vh; /* Ensure the layout takes full viewport height */
+}
+.content {
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+</style>
+
+
+
+<!-- <template>
     <div class="flex h-screen">
-  <!-- Sidebar -->
   <div class="bg-gray-900 text-white w-64 flex flex-col justify-between">
     <div>
-      <!-- Logo -->
+     
       <div class="p-4 flex items-center">
         <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -12,7 +51,7 @@
         <span class="font-bold">NVMIS</span>
       </div>
 
-      <!-- Navigation Links -->
+      
       <nav class="mt-8">
         <a href="/dashboard" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
           <svg class="h-6 w-6 mr-2"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -47,10 +86,7 @@
             <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3" /></svg>
           <span>Department</span>
         </a>
-<!-- <a href="/dashboard/applicant" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
-          
-          <span>Task</span>
-        </a> -->
+
 
         <NuxtLink to="/dashboard/task"  class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
           <svg class="h-6 w-6 mr-2"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  
@@ -68,11 +104,11 @@
             <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3" /></svg>
           <span>Applicant</span>
         </a>
-        <!-- Add more links as needed -->
+       
       </nav>
     </div>
 
-    <!-- Logout Button -->
+
     <div class="p-4">
       <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
         Logout
@@ -80,9 +116,9 @@
     </div>
   </div>
 
-  <!-- Main Content Area -->
+ 
   <div class="flex-1 p-6">
-    <!-- Your main content goes here -->
+    
   </div>
 </div>
 </template>
@@ -103,4 +139,4 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 
-</style>
+</style> -->

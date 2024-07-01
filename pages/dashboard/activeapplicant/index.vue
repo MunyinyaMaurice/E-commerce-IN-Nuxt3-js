@@ -4,7 +4,11 @@
     </div>
 </template>
 
-<script setup>
+ <script setup lang="ts">
+// <script lang="ts">
+// definePageMeta({
+//   layout: "dashboardlayout",
+// });
 import { ref, onMounted } from 'vue';
 import { navigateTo } from '#app';
 onMounted(() => {

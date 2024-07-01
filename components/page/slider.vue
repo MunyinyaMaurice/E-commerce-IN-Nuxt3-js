@@ -1,5 +1,5 @@
 <template>
-    <div class="carousel relative mt-2 mb-5 shadow-lg bg-white rounded-lg overflow-hidden">
+    <div class="carousel relative mt-0 mb-2 shadow-lg bg-white rounded-lg overflow-hidden">
     <div class="carousel-inner relative w-full h-[70vh]">
       <input class="carousel-open hidden" type="radio" id="carousel-1" name="carousel" aria-hidden="true" checked>
       <div class="carousel-item absolute opacity-0 transition-opacity duration-100 ease-out h-full w-full">

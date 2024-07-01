@@ -1,5 +1,7 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { isAuthenticated } from "~/composables/authService"; // Adjust the path to your authService
+import { createRouter, createWebHistory } from "vue-router";
+import type { RouteRecordRaw } from "vue-router"; // Type-only import
+import { isAuthenticated } from "~/composables/authService";
+// Import components
 import LoginPage from "pages/login/index.vue";
 import RegisterPage from "pages/register/index.vue";
 import ApplyPage from "pages/apply/index.vue";
@@ -15,6 +17,7 @@ import TasksPage from "pages/dashboard/task/index.vue";
 import CreateTaskPage from "pages/dashboard/task/createTask/index.vue";
 import UpdateTaskPage from "pages/dashboard/task/updateTask/[id].vue";
 import ActiveApplicantsPage from "pages/dashboard/activeapplicant/index.vue";
+import AssignedTaskToVolunteer from "pages/dashboard/volunteer/assignedTo/index.vue";
 
 const routes: RouteRecordRaw[] = [
   // Unprotected Routes
@@ -73,6 +76,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/dashboard/activeapplicant",
     component: ActiveApplicantsPage,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/dashboard/volunteer/assignedTo",
+    component: AssignedTaskToVolunteer,
     meta: { requiresAuth: true },
   },
 ];

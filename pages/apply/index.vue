@@ -1,4 +1,4 @@
-<!-- <template>
+ <!--<template>
   <div>
 <PageApply />
   </div>
@@ -12,7 +12,7 @@
 
 </style> -->
 
-<!-- <template>
+ <!-- <template>
   <div class="flex justify-center items-center min-h-screen p-6 bg-gray-100">
     <div class="card max-w-4xl w-full">
       <div class="card-header text-center bg-blue-800 rounded-lg text-white py-4">
@@ -213,7 +213,8 @@ const saveApplication = async () => {
   }
 };
 
-</script> -->
+</script>  -->
+
 
 <template>
   <div class="flex justify-center items-center min-h-screen p-6 bg-gray-100">
@@ -223,38 +224,25 @@ const saveApplication = async () => {
       </div>
       <div class="card-body p-6 bg-white shadow-md">
         <form @submit.prevent="saveApplication">
-          <!-- <div>
-            <label for="nationalId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National ID:</label>
-            <input 
-              v-model="enteredNationalId"
-              type="text" 
-              id="nationalId" 
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-              placeholder="Enter your national ID"
-              required
-              @input="fetchUserInfo"
-            />
-          </div> -->
           <div class="relative">
-    <label for="nationalId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National ID:</label>
-    <div class="relative">
-        <input 
-            v-model="enteredNationalId"
-            type="text" 
-            id="nationalId" 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-            placeholder="Enter your national ID"
-            required
-            @input="fetchUserInfo"
-        />
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-        </div>
-    </div>
-</div>
-
+            <label for="nationalId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">National ID:</label>
+            <div class="relative">
+              <input 
+                v-model="enteredNationalId"
+                type="text" 
+                id="nationalId" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                placeholder="Enter your national ID"
+                required
+                @input="fetchUserInfo"
+              />
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
 
           <div v-if="userInfo" class="grid grid-cols-2 gap-4 mt-4">
             <div>
@@ -277,16 +265,7 @@ const saveApplication = async () => {
                 readonly
               />
             </div>
-            <!-- <div>
-              <label class="block mb-2 font-bold" for="degreeId">Degree ID:</label>
-              <input
-                v-model="formData.degreeId"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                type="text"
-                id="degreeId"
-                readonly
-              />
-            </div> -->
+            
             <div>
               <label class="block mb-2 font-bold" for="majorFocus"> Focus:</label>
               <input
@@ -310,11 +289,40 @@ const saveApplication = async () => {
               <label class="block mb-2 font-bold" for="telPhone">Phone Number:</label>
               <input
                 v-model="formData.telPhone"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"                   type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"                   
+                type="text"
                 id="telPhone"
               />
             </div>
+
+            <!-- Add Hospital Selection Dropdown -->
+            <div>
+              <label class="block mb-2 font-bold" for="hospital">Select Hospital:</label>
+              <select
+                v-model="selectedHospital"
+                @change="fetchDepartmentsWithOpenPosition"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option v-for="hospital in hospitals" :key="hospital.hospitalId" :value="hospital.hospitalId">
+                  {{ hospital.positionName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Add Department Selection Dropdown -->
+            <div v-if="departments.length">
+              <label class="block mb-2 font-bold" for="department">Select Department:</label>
+              <select
+                v-model="selectedDepartment"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option v-for="department in departments" :key="department.positionId" :value="department.positionId">
+                  {{ department.departmentName }}
+                </option>
+              </select>
+            </div>
           </div>
+
           <div v-if="error" class="text-red-500 mb-4">{{ error }}</div>
           <div class="mt-4">
             <button type="submit" class="block w-full bg-blue-800 text-white py-3 px-4 rounded-lg" :disabled="isLoading">
@@ -337,7 +345,6 @@ interface FormData {
   email: string;
   telPhone: string;
   nationalId: string;
-  // degreeId: string;
   majorFocus: string;
   positionId?: number;
 }
@@ -348,7 +355,6 @@ const formData = ref<FormData>({
   email: '',
   telPhone: '',
   nationalId: '',
-  // degreeId: '',
   majorFocus: '',
 });
 
@@ -356,18 +362,18 @@ const error = ref('');
 const isLoading = ref(false);
 
 const enteredNationalId = ref('');
+const hospitals = ref([]);
+const departments = ref([]);
 const userInfo = ref(null);
 
+const loading = ref(false);
 const route = useRoute();
 const router = useRouter();
-const positionId = ref<number | null>(null);
+const selectedHospital = ref<number | null>(null);
+const selectedDepartment = ref<number | null>(null);
+const config = useRuntimeConfig();
 
-onMounted(() => {
-  if (route.query.positionId) {
-    positionId.value = parseInt(route.query.positionId as string, 10);
-  }
-  console.log('Retrieved positionId:', positionId.value);
-});
+const baseUrl = config.public.apiBase;
 
 const fetchUserInfo = async () => {
   if (enteredNationalId.value) {
@@ -379,7 +385,6 @@ const fetchUserInfo = async () => {
         ...formData.value,
         firstName: data.firstName,
         lastName: data.lastName,
-        // degreeId: data.degreeId,
         majorFocus: data.majorFocus,
         nationalId: enteredNationalId.value,
       };
@@ -392,21 +397,53 @@ const fetchUserInfo = async () => {
   }
 };
 
+const fetchHospitalsWithOpenPosition = async () => {
+  loading.value = true;
+  error.value = '';
+  try {
+    const response = await fetch('http://localhost:23999/api/hospitals/with_pending_positions');
+    const data = await response.json();
+    hospitals.value = data;
+  } catch (err) {
+    console.error(err);
+    hospitals.value = [];
+  } finally {
+    loading.value = false;
+  }
+};
+
+const fetchDepartmentsWithOpenPosition = async () => {
+  if (!selectedHospital.value) return;
+  loading.value = true;
+  error.value = '';
+  try {
+    const response = await fetch(`http://localhost:23999/api/hospitals/departments_with_open_positions/${selectedHospital.value}`);
+    const data = await response.json();
+    departments.value = data;
+  } catch (err) {
+    console.error(err);
+    departments.value = [];
+  } finally {
+    loading.value = false;
+  }
+};
+
 const saveApplication = async () => {
   isLoading.value = true;
   error.value = '';
 
-  if (!positionId.value) {
-    error.value = 'Position ID is missing';
+  if (!selectedDepartment.value) {
+    error.value = 'Department is missing';
     isLoading.value = false;
     return;
   }
 
-  formData.value.positionId = positionId.value;
+  formData.value.positionId = selectedDepartment.value;
   console.log('Form data before submission:', formData.value);
 
   try {
-    const response = await fetch(`http://localhost:23999/api/applicants/${positionId.value}?positionId=${positionId.value}`, {
+    const response = await fetch(`http://localhost:23999/api/applicants/${selectedDepartment.value}?positionId=${selectedDepartment.value}`, {
+        // const response = await fetch(`http://localhost:23999/api/applicants/${selectedDepartment.value}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -426,7 +463,6 @@ const saveApplication = async () => {
         email: '',
         telPhone: '',
         nationalId: '',
-        // degreeId: '',
         majorFocus: '',
         positionId: undefined,
       };
@@ -437,6 +473,8 @@ const saveApplication = async () => {
     isLoading.value = false;
   }
 };
+
+onMounted(() => {
+  fetchHospitalsWithOpenPosition();
+});
 </script>
-
-

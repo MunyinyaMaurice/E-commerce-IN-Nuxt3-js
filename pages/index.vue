@@ -1,11 +1,16 @@
 <template>
     <div class="bg-white shadow-sm ">
-    <div>
+    <div class="sticky top-0 z-50">
+      <PageNavbar />
+      </div>
+      <div class="mx-2">
         <!-- <openPositionsCard /> -->
-        <PageSlider />
-        <PageStatement />   
+      
+         <PageSlider />
+       
+        <!-- <PageStatement />    -->
         <div> 
-            <PageOpenPosition />
+            <!-- <PageOpenPosition /> -->
         </div>
         <div>
     <!-- <h2>Home</h2> -->
@@ -18,9 +23,10 @@
         <!-- <PageCard /> -->
         
         <!-- <AdminDashboardHospital /> -->
-        </div>
+        <!-- </div> -->
         <div>
             <PageFooter />
+        </div>
         </div>
         </div>
 </template>
@@ -36,6 +42,9 @@ import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import { useTheme } from "~/composables/state";
 // import { useTheme } from "~/composables/state";
+definePageMeta({
+  layout: "landingPage",
+});
 const appConfig = useAppConfig()
 useSeoMeta({
   charset: "UTF-8",
@@ -64,6 +73,9 @@ const theme = useTheme();
 onMounted(() => {
   initFlowbite();
 });
+
+  
+
 </script>
 
 

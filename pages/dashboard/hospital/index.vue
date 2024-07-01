@@ -5,7 +5,12 @@
     <!-- <AdminDashboardHospitalHospitals v-if="isAuthenticated" /> -->
   </div>
 </template>
-<script setup>
+ <script setup lang="ts">
+// <script lang="ts">
+// definePageMeta({
+//   layout: "dashboardlayout",
+// });
+
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 onMounted(() => {

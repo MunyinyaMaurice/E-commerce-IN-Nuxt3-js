@@ -9,7 +9,7 @@
           <thead>
             <tr class="bg-gray-200">
               <th class="py-2 px-4 border">ID</th>
-              <th class="py-2 px-4 border">Department ID</th>
+              <th class="py-2 px-4 border">Department Name</th>
               <th class="py-2 px-4 border">Title</th>
               <th class="py-2 px-4 border">Description</th>
               <th class="py-2 px-4 border">Start Date</th>
@@ -26,7 +26,7 @@
               class="border-b hover:bg-gray-100"
             >
               <td class="py-2 px-4 border">{{ task.id }}</td>
-              <td class="py-2 px-4 border">{{ task.departmentId }}</td>
+              <td class="py-2 px-4 border">{{ task.departmentName }}</td>
               <td class="py-2 px-4 border">{{ task.title }}</td>
               <td class="py-2 px-4 border">{{ task.description }}</td>
               <td class="py-2 px-4 border">{{ task.startDate }}</td>
@@ -56,7 +56,7 @@
   
   interface Task {
     id: number;
-    departmentId: number;
+    departmentName: string;
     title: string;
     description: string;
     startDate: string;

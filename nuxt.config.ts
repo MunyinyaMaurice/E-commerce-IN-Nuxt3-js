@@ -2,8 +2,10 @@
 import path from "path";
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
+  plugins: ["~/plugins/pinia.ts", "~/plugins/initUser.client.ts"],
   modules: ["@nuxtjs/tailwindcss"],
+  // , "@pinia/nuxt"
+  buildModules: ["@nuxt/typescript-build"],
 
   // component: 'Slider',
   // css: ['~/assets/css/main.css'],
@@ -30,6 +32,8 @@ export default defineNuxtConfig({
     },
   },
   router: {
+    middleware: ["roleRedirect"],
+    middlewares: ["auth", "roleBasedAccess"],
     options: {
       linkActiveClass: "text-blue-500",
       linkExactActiveClass: "text-blue-500",
